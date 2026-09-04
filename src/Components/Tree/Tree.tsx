@@ -1,12 +1,13 @@
+// import { useState } from "react";
 import type { TreesType } from "../../Type/type";
 interface TreeType {
     tree: TreesType;
 }
 
 const Tree = ({tree}:TreeType) => {
-    console.log(tree);
-
     const {image, name, category, price} = tree;
+
+    // const [cardCart, setCardCart] = useState<TreesType[]>([]);
     return (
         <div className="min-w-0 w-full">
             <div className="w-full rounded-xl bg-white p-1 shadow-md">

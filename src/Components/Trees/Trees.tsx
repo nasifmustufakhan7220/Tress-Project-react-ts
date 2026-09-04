@@ -8,10 +8,13 @@ interface TreesProps {
 const Trees = ({treesPromises}:TreesProps) => {
     const trees = use(treesPromises);
     return (
-        <div className="grid grid-cols-2 gap-4 px-4 my-6">
-            {
-                trees.map(tree=> <Tree key={tree.id} tree={tree}></Tree>)
-            }
+        <div className="container mx-auto px-4 my-6">
+            <h1 className="text-[17px] font-bold mb-4">Our Plants</h1>
+            <div className="grid grid-cols-2 gap-4 ">
+                {
+                    trees.map(tree=> <Tree key={tree.id} tree={tree}></Tree>)
+                }
+            </div>
         </div>
     );
 };

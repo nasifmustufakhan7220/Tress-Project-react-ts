@@ -1,8 +1,10 @@
 const Navbar = () => {
     return (
-        <div>
-            
-        </div>
+        <>
+            <header className="container mx-auto">
+                    
+            </header>
+        </>
     );
 };
 

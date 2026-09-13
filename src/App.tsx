@@ -11,15 +11,22 @@ const treesFetch = async ():Promise<TreesType[]>=>{
     return data.plants;
 }
 
+const catagoryFetch = async (id:number):Promise<TreesType[]>=>{
+  const res = await fetch(`https://openapi.programming-hero.com/api/category/${id}`);
+  const data = await res.json();
+  return data.plants;
+}
+
 
 function App() {
   const [treesPromise] = useState(()=> treesFetch());
+
   return (
     <>
         <Navbar></Navbar>
         <Hero></Hero>
         <Suspense fallback={<p>Trees are loading.....</p>}>
-            <Catagories treesPromise={treesPromise}></Catagories>   
+            <Catagories treesPromise={treesPromise} catagoryFetch={catagoryFetch}></Catagories>   
         </Suspense>
     </>
   )

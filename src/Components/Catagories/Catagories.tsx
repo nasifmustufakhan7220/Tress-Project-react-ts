@@ -1,18 +1,33 @@
 import { use, useState } from "react";
 import type { TreesType } from "../../Type/type";
 import AllPlants from "../AllPlants/AllPlants";
+import FruitsTrees from "../FruitTress/FruitsTrees";
+import FlowersTrees from "../FlowersTrees/FlowersTrees";
+import ShadeTrees from "../ShadeTrees/ShadeTrees";
+import MedicinalTrees from "../MedicinalTrees/MedicinalTrees";
+import TimberTrees from "../TimberTrees/TimberTrees";
+import EverGreenTrees from "../EverGreenTrees/EverGreenTrees";
 
 interface ICatagoriesProps {
     treesPromise: Promise<TreesType[]>;
+    catagoryFetch: (id:number)=> Promise<TreesType[]>;
 }
 
-const Catagories = ({ treesPromise }: ICatagoriesProps) => {
+const Catagories = ({ treesPromise,catagoryFetch }: ICatagoriesProps) => {
     const plants = use(treesPromise);
 
     const [isSelected, setIsSelected] = useState<string>("all");
+    const [categoryPlants, setCategoryPlants] = useState<TreesType[]>([]);
 
-    const handleCategoryClick = (selectedCatagory:string) => {
+    const handleCategoryClick = async (selectedCatagory:string, id:number) => {
         setIsSelected(selectedCatagory);
+
+        if(id !== 0){
+            const plants = await catagoryFetch(id);
+            setCategoryPlants(plants);
+        }else{
+            return;
+        }
     };
     return (
         <section className="max-w-122.5 mx-auto px-5 py-4">
@@ -37,7 +52,7 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                 {/* All */}
                 <button
                     type="button"
-                    onClick={()=>handleCategoryClick("all")}
+                    onClick={()=>handleCategoryClick("all",0)}
                     className={`flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl shadow-md ${
                         isSelected === "all"
                             ? "bg-green-700 text-white"
@@ -52,7 +67,7 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                 </button>
 
                 {/* Fruit Tree */}
-                <button onClick={()=>handleCategoryClick("fruit")}
+                <button onClick={()=>handleCategoryClick("fruit",1)}
                     type="button"
                    className={`flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl shadow-md ${
                         isSelected === "fruit"
@@ -68,7 +83,7 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                 </button>
 
                 {/* Flowering */}
-                <button onClick={()=>handleCategoryClick("flower")}
+                <button onClick={()=>handleCategoryClick("flower", 2)}
                     type="button"
                     className={`flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl shadow-md ${
                         isSelected === "flower"
@@ -84,7 +99,7 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                 </button>
 
                 {/* Shade Tree */}
-                <button onClick={()=>handleCategoryClick("shadeTree")}
+                <button onClick={()=>handleCategoryClick("shadeTree", 3)}
                     type="button"
                      className={`flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl shadow-md ${
                         isSelected === "shadeTree"
@@ -100,7 +115,7 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                 </button>
 
                 {/* Medicinal */}
-                <button onClick={()=>handleCategoryClick("medicinal")}
+                <button onClick={()=>handleCategoryClick("medicinal", 4)}
                     type="button"
                      className={`flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl shadow-md ${
                         isSelected === "medicinal"
@@ -116,7 +131,7 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                 </button>
 
                 {/* Timber */}
-                <button onClick={()=>handleCategoryClick("timber")}
+                <button onClick={()=>handleCategoryClick("timber", 5)}
                     type="button"
                      className={`flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl shadow-md ${
                         isSelected === "timber"
@@ -132,7 +147,7 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                 </button>
 
                 {/* Evergreen */}
-                <button onClick={()=> handleCategoryClick("evergreen")}
+                <button onClick={()=> handleCategoryClick("evergreen", 6)}
                     type="button"
                      className={`flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl shadow-md ${
                         isSelected === "evergreen"
@@ -157,22 +172,22 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                    
                 }
                 {
-                    isSelected === "fruit" && <p>Fruit tree</p>
+                    isSelected === "fruit" && <FruitsTrees categoryPlants={categoryPlants}/>
                 }
                 {
-                    isSelected === "flower" && <p>flower tree</p>
+                    isSelected === "flower" && <FlowersTrees categoryPlants={categoryPlants}/>
                 }
                 {
-                    isSelected === "shadeTree" && <p>shadeTree tree</p>
+                    isSelected === "shadeTree" && <ShadeTrees categoryPlants={categoryPlants}/>
                 }
                 {
-                    isSelected === "medicinal" && <p>medicinal tree</p>
+                    isSelected === "medicinal" && <MedicinalTrees categoryPlants={categoryPlants}/>
                 }
                 {
-                    isSelected === "timber" && <p>timber tree</p>
+                    isSelected === "timber" && <TimberTrees categoryPlants={categoryPlants}/>
                 }
                 {
-                    isSelected === "evergreen" && <p>evergreen tree</p>
+                    isSelected === "evergreen" && <EverGreenTrees categoryPlants={categoryPlants}/>
                 }
             </div>
 

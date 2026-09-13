@@ -1,12 +1,11 @@
-import { use } from "react";
 import type { TreesType } from "../../Type/type";
 import Tree from "../Tree/Tree";
 
 interface TreesProps {
-    treesPromises: Promise<TreesType[]>;
+    trees: TreesType[];
 }
-const Trees = ({treesPromises}:TreesProps) => {
-    const trees = use(treesPromises);
+const Trees = ({trees}:TreesProps) => {
+    
     return (
         <div className="container mx-auto px-4 my-6">
             <h1 className="text-[17px] font-bold mb-4">Our Plants</h1>

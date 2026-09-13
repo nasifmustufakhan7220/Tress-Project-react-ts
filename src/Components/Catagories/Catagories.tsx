@@ -2,6 +2,7 @@
 import { use, useState } from "react";
 
 import type { TreesType } from "../../Type/type";
+import Trees from "../Trees/Trees";
 
 interface ICatagoriesProps {
     treesPromise: Promise<TreesType[]>;
@@ -9,9 +10,8 @@ interface ICatagoriesProps {
 
 const Catagories = ({ treesPromise }: ICatagoriesProps) => {
     const trees = use(treesPromise);
-    console.log(trees);
 
-    const [isSelected, setIsSelected] = useState<string>("");
+    const [isSelected, setIsSelected] = useState<string>("all");
 
     const handleCategoryClick = (selectedCatagory:string) => {
         setIsSelected(selectedCatagory);
@@ -86,9 +86,13 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                 </button>
 
                 {/* Shade Tree */}
-                <button
+                <button onClick={()=>handleCategoryClick("shadeTree")}
                     type="button"
-                    className="flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl bg-white shadow-md"
+                     className={`flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl shadow-md ${
+                        isSelected === "shadeTree"
+                            ? "bg-green-700 text-white"
+                            : "bg-white text-green-700"
+                    }`}
                 >
                     <i className="fa-solid fa-tree mb-1 text-xl"></i>
 
@@ -98,9 +102,13 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                 </button>
 
                 {/* Medicinal */}
-                <button
+                <button onClick={()=>handleCategoryClick("medicinal")}
                     type="button"
-                    className="flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl bg-white shadow-md"
+                     className={`flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl shadow-md ${
+                        isSelected === "medicinal"
+                            ? "bg-green-700 text-white"
+                            : "bg-white text-green-700"
+                    }`}
                 >
                     <i className="fa-solid fa-seedling mb-1 text-xl"></i>
 
@@ -110,9 +118,13 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                 </button>
 
                 {/* Timber */}
-                <button
+                <button onClick={()=>handleCategoryClick("timber")}
                     type="button"
-                    className="flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl bg-white shadow-md"
+                     className={`flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl shadow-md ${
+                        isSelected === "timber"
+                            ? "bg-green-700 text-white"
+                            : "bg-white text-green-700"
+                    }`}
                 >
                     <i className="fa-solid fa-tree mb-1 text-xl"></i>
 
@@ -122,9 +134,13 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                 </button>
 
                 {/* Evergreen */}
-                <button
+                <button onClick={()=> handleCategoryClick("evergreen")}
                     type="button"
-                    className="flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl bg-white shadow-md"
+                     className={`flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl shadow-md ${
+                        isSelected === "evergreen"
+                            ? "bg-green-700 text-white"
+                            : "bg-white text-green-700"
+                    }`}
                 >
                     <i className="fa-solid fa-tree mb-1 text-xl"></i>
 
@@ -132,32 +148,35 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
                         Evergreen
                     </span>
                 </button>
-
-                {/* More */}
-                <button
-                    type="button"
-                    className="flex h-16 cursor-pointer flex-col items-center justify-center rounded-xl bg-white shadow-md"
-                >
-                    <i className="fa-solid fa-ellipsis mb-1 text-xl"></i>
-
-                    <span className="text-xs">
-                        More
-                    </span>
-                </button>
+                
 
             </div>
 
-            {/* Tree Cards
+            {/* Tree Cards */}
             <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {
-                    allTrees.map(tree => (
-                        <Tree
-                            key={tree.id}
-                            tree={tree}
-                        />
-                    ))
+                   isSelected === "all" && <Trees trees={trees}/>
+                   
                 }
-            </div> */}
+                {
+                    isSelected === "fruit" && <p>Fruit tree</p>
+                }
+                {
+                    isSelected === "flower" && <p>flower tree</p>
+                }
+                {
+                    isSelected === "shadeTree" && <p>shadeTree tree</p>
+                }
+                {
+                    isSelected === "medicinal" && <p>medicinal tree</p>
+                }
+                {
+                    isSelected === "timber" && <p>timber tree</p>
+                }
+                {
+                    isSelected === "evergreen" && <p>evergreen tree</p>
+                }
+            </div>
 
         </section>
     );

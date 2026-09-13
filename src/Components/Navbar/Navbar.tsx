@@ -1,4 +1,14 @@
-const Navbar = () => {
+import type { ITreesType } from "../../Type/type";
+
+interface ICartsProps{
+    carts: ITreesType[]
+}
+
+const Navbar = ({carts}:ICartsProps) => {
+
+    const hendelCartItems = ()=>{
+        console.log("helo");
+    }
     
 
     return (
@@ -16,10 +26,10 @@ const Navbar = () => {
 
                 
                 <div className="relative text-2xl">
-                    <i className="fa-solid fa-cart-shopping"></i>
+                    <i onClick={hendelCartItems} className="fa-solid fa-cart-shopping"></i>
 
                    <span className="absolute -top-3 -right-3 flex h-6 min-w-6 items-center justify-center rounded-full bg-green-700 px-1 text-sm font-bold text-white">
-                        0
+                        {carts.length}
                     </span>
                     
                 </div>

@@ -1,7 +1,7 @@
 import './App.css'
 import Navbar from './Components/Navbar/Navbar';
 import Hero from './Components/Hero/Hero';
-import { Suspense} from 'react';
+import { Suspense, useState} from 'react';
 import Loder from './Components/Loder/Loder';
 
 import type { ITreesType } from './Type/type';
@@ -21,13 +21,17 @@ const allPlantsPromise = allPlantsFetch();
 
 function App() {
 
+  const [carts, setCarts] = useState<ITreesType[]>([]);
+
 
   return (
     <>
-        <Navbar></Navbar>
+        <Navbar carts={carts}></Navbar>
         <Hero></Hero>
         <Suspense fallback={<Loder/>}>
-             <AllPlants allPlantsPromise={allPlantsPromise}/> 
+             <AllPlants allPlantsPromise={allPlantsPromise}
+             carts={carts} setCarts={setCarts}
+             /> 
         </Suspense>
         
     </>

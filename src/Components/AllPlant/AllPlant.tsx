@@ -1,12 +1,20 @@
+import type { Dispatch, SetStateAction } from "react";
 import type { ITreesType } from "../../Type/type";
 
 interface IAllPlantProps{
-    plant: ITreesType
+    plant: ITreesType;
+    carts: ITreesType[];
+    setCarts: Dispatch<SetStateAction<ITreesType[]>>
 }
-const AllPlant = ({plant}:IAllPlantProps) => {
+const AllPlant = ({plant, carts, setCarts}:IAllPlantProps) => {
     const {image, name, category, price} = plant;
 
-    // const [cardCart, setCardCart] = useState<TreesType[]>([]);
+    const hendleAddToCart = ()=>{
+        const newPlant = [...carts, plant];
+        setCarts(newPlant);
+    }
+
+    
     return (
         <div className="min-w-0 w-full">
             <div className="w-full rounded-xl bg-white p-1 shadow-md">
@@ -37,7 +45,8 @@ const AllPlant = ({plant}:IAllPlantProps) => {
                             ${price}
                         </p>
 
-                        <button className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-700 text-white">
+                        <button onClick={hendleAddToCart}
+                         className="flex h-11 w-11 items-center justify-center rounded-xl bg-green-700 text-white cursor-pointer">
                             <i className="fa-solid fa-cart-shopping"></i>
                         </button>
                     </div>

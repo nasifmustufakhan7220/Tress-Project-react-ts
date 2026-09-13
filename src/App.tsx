@@ -1,20 +1,22 @@
 import './App.css'
 import Navbar from './Components/Navbar/Navbar';
 import Hero from './Components/Hero/Hero';
-import type { IBtnTypes } from './Type/btn';
-import { Suspense } from 'react';
-import CatagoriesHeader from './Components/CatagoriesHeader/CatagoriesHeader';
+import { Suspense} from 'react';
 import Loder from './Components/Loder/Loder';
-import CatagoriesBtn from './Components/CatagoriesBtn/CatagoriesBtn';
+
+import type { ITreesType } from './Type/type';
+import AllPlants from './Components/AllPlants/AllPlants';
 
 
-const categoryBtnsFetch = async (): Promise<IBtnTypes[]>=>{
-  const res = await fetch("https://openapi.programming-hero.com/api/categories");
+const allPlantsFetch = async(): Promise<ITreesType[]>=>{
+  const res = await fetch("https://openapi.programming-hero.com/api/plants");
   const data = await res.json();
-  return data.categories;
+  return data.plants;
 }
 
-const buttonPromise = categoryBtnsFetch();
+
+
+const allPlantsPromise = allPlantsFetch();
 
 
 function App() {
@@ -24,9 +26,8 @@ function App() {
     <>
         <Navbar></Navbar>
         <Hero></Hero>
-        <CatagoriesHeader/>
         <Suspense fallback={<Loder/>}>
-            <CatagoriesBtn buttonPromise={buttonPromise}/>
+             <AllPlants allPlantsPromise={allPlantsPromise}/> 
         </Suspense>
         
     </>

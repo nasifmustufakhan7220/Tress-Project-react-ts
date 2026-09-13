@@ -1,4 +1,4 @@
-export interface TreesType {
+export interface ITreesType {
     id: number,
     image: string,
     name: string,

@@ -3,6 +3,10 @@ import Navbar from './Components/Navbar/Navbar';
 import Hero from './Components/Hero/Hero';
 
 
+const categoryBtnsFetch = async ()=>{
+  
+}
+
 
 
 function App() {

@@ -1,13 +1,13 @@
 import { use, useState } from "react";
 import type { TreesType } from "../../Type/type";
-import OurTrees from "../OurTrees/OurTrees";
+import AllPlants from "../AllPlants/AllPlants";
 
 interface ICatagoriesProps {
     treesPromise: Promise<TreesType[]>;
 }
 
 const Catagories = ({ treesPromise }: ICatagoriesProps) => {
-    const trees = use(treesPromise);
+    const plants = use(treesPromise);
 
     const [isSelected, setIsSelected] = useState<string>("all");
 
@@ -153,7 +153,7 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
             {/* Tree Cards */}
             <div className="mt-6 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {
-                   isSelected === "all" && <OurTrees trees={trees}/>
+                   isSelected === "all" && <AllPlants plants={plants}/>
                    
                 }
                 {

@@ -4,7 +4,7 @@ interface TreeType {
     tree: TreesType;
 }
 
-const Tree = ({tree}:TreeType) => {
+const Plant = ({tree}:TreeType) => {
     const {image, name, category, price} = tree;
 
     // const [cardCart, setCardCart] = useState<TreesType[]>([]);
@@ -49,4 +49,4 @@ const Tree = ({tree}:TreeType) => {
     );
 };
 
-export default Tree;
+export default Plant;

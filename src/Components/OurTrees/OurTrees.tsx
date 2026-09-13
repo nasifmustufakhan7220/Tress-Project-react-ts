@@ -4,12 +4,12 @@ import Tree from "../Tree/Tree";
 interface TreesProps {
     trees: TreesType[];
 }
-const Trees = ({trees}:TreesProps) => {
+const OurTrees = ({trees}:TreesProps) => {
     
     return (
         <div className="container mx-auto px-4 my-6">
             <h1 className="text-[17px] font-bold mb-4">Our Plants</h1>
-            <div className="grid grid-cols-2 gap-4 ">
+            <div className="grid grid-cols-1 gap-4 ">
                 {
                     trees.map(tree=> <Tree key={tree.id} tree={tree}></Tree>)
                 }
@@ -18,4 +18,4 @@ const Trees = ({trees}:TreesProps) => {
     );
 };
 
-export default Trees;
+export default OurTrees;

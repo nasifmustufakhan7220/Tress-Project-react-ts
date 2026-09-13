@@ -1,8 +1,6 @@
-
 import { use, useState } from "react";
-
 import type { TreesType } from "../../Type/type";
-import Trees from "../Trees/Trees";
+import OurTrees from "../OurTrees/OurTrees";
 
 interface ICatagoriesProps {
     treesPromise: Promise<TreesType[]>;
@@ -17,7 +15,7 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
         setIsSelected(selectedCatagory);
     };
     return (
-        <section className="px-5 py-4">
+        <section className="max-w-122.5 mx-auto px-5 py-4">
 
             {/* Header */}
             <div className="mb-4 flex items-center justify-between">
@@ -153,9 +151,9 @@ const Catagories = ({ treesPromise }: ICatagoriesProps) => {
             </div>
 
             {/* Tree Cards */}
-            <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-6 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {
-                   isSelected === "all" && <Trees trees={trees}/>
+                   isSelected === "all" && <OurTrees trees={trees}/>
                    
                 }
                 {

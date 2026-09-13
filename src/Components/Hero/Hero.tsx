@@ -4,7 +4,7 @@ import plantImage from "../../assets/pngtree-indoor-plant-flowerpot-png-image_11
 const Hero = () => {
     return (
         <>
-            <section className="container mx-auto px-4 my-6">
+            <section className="max-w-122.5 mx-auto px-4 my-6">
                 <div className="bg-green-200">
                     <div className="mx-auto px-4">
                         <div className="grid grid-cols-2">

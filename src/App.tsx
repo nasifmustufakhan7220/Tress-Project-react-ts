@@ -14,16 +14,12 @@ const allPlantsFetch = async(): Promise<ITreesType[]>=>{
   return data.plants;
 }
 
-
-
 const allPlantsPromise = allPlantsFetch();
 
 
 function App() {
 
   const [carts, setCarts] = useState<ITreesType[]>([]);
-
-
   return (
     <>
         <Navbar carts={carts}></Navbar>
